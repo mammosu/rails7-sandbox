@@ -15,7 +15,6 @@
     <%= render Common::HeaderComponent.new() %>
     <main class="container mx-auto mt-28">
       <% flash.each do |type, data| %>
-        <p><%= type %></p>
         <%= render Alerts::AlertComponent.new(type: type, data: data) %>
       <% end %>
       <%= yield %>
