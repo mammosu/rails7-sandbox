@@ -3,9 +3,9 @@
     <h1 class="font-bold text-4xl">Posts</h1>
     <%= link_to 'New post', new_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-  <section class="text-gray-600 body-font overflow-hidden">
+  <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-      <div id="posts" class="-my-8 divide-y-2 divide-gray-100">
+      <div class="flex flex-wrap -m-4" id="posts">
         <%= render @posts %>
       </div>
     </div>

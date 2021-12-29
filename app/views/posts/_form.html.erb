@@ -21,6 +21,11 @@
     <%= form.select :category_id, Category.pluck(:name, :id), { include_blank: true }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :files %>
+    <%= form.file_field :files, multiple: true, direct_upload: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
   <div class="inline">
     <%= button_tag type: "submit", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-flex items-center font-medium cursor-pointer" do %>
       <svg data-hello-target="loading" class="hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

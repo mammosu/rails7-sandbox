@@ -1,12 +1,32 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <%= render @post %>
+<%= link_to 'Back', posts_path, class: "ml-2 rounded-lg py-3 px-5 text-dark bg-white inline-block font-medium" %>
 
-    <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<section>
+  <div data-controller="carousel" data-carousel-options-value='{"pagination": {"el": ".swiper-pagination", "clickable": true}}' class="swiper-container relative mx-auto w-1/2 h-2/3 overflow-hidden">
+    <div class="swiper-wrapper">
+      <% @post.files.each do |file| %>
+        <div class="swiper-slide text-center leading-none flex items-start justify-center">
+          <%= image_tag file, class: "w-auto self-center" %>
+        </div>
+      <% end %>
     </div>
-    <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <article class="max-w-prose mx-auto py-8">
+    <h1 class="text-2xl font-bold"><%= @post.title %></h1>
+    <h2 class="mt-2 text-sm text-gray-500"><%= @post.category&.name || "NO CATEGORY" %>, <%= l(@post.created_at, format: :short) %></h2>
+
+    <p class="mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare justo felis, nec lobortis augue luctus et. Sed nibh metus, posuere non elit nec, rutrum imperdiet justo. Cras ut nunc felis. Nunc rhoncus faucibus ultrices. Suspendisse ut consectetur nulla. Pellentesque mattis, ligula at pellentesque tempor, nisl elit porta lectus, eu bibendum arcu purus eget urna. Phasellus euismod at elit vel convallis. Nullam porttitor mauris risus, eget hendrerit nisl tincidunt vel. Phasellus at dolor dui. Aliquam commodo tellus dolor. Sed purus nunc, laoreet quis elementum at, elementum at nisl. Praesent ut rhoncus orci. Curabitur sit amet est non dolor porttitor facilisis. Nullam velit tortor, iaculis eget vehicula quis, sollicitudin id magna.</p>
+  </article>
+</section>
+
+<hr>
+
+<div class="mx-auto w-full flex mt-5">
+  <div class="mx-auto">
+    <%= link_to '編集', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 text-indigo-400 bg-white border inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'この投稿を削除', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 text-red-400 bg-white font-medium" %>
+    </div>
   </div>
 </div>
