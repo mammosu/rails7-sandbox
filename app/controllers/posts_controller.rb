@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to posts_path, success: "Post was successfully created."
+      redirect_to @post, success: "Post was successfully created."
     else
       render(
         turbo_stream: turbo_stream.replace(
@@ -67,6 +67,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :category)
+      params.require(:post).permit(:category_id, :title)
     end
 end

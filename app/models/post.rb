@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  CATEGORIES = %w[Rails StimulusJS TailwindCSS Heroku].freeze
+  belongs_to :category, optional: true
 
-  validates :title, :body, presence: true
+  validates :title, presence: true
 end

@@ -1,6 +1,5 @@
-class NotificationComponent < ViewComponent::Base
+class Alerts::AlertComponent < ViewComponent::Base
   def initialize(type:, data:)
-    super
     @type = type
     @data = prepare_data(data)
     @border_class = border_class
