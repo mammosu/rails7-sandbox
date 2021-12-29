@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to posts_path, notice: "Post was successfully created."
+      redirect_to posts_path, success: "Post was successfully created."
     else
       render(
         turbo_stream: turbo_stream.replace(
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated."
+      redirect_to @post, success: "Post was successfully updated."
     else
       render(
         turbo_stream: turbo_stream.replace(
