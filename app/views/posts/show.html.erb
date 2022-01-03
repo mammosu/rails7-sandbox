@@ -26,7 +26,7 @@
   <div class="mx-auto">
     <%= link_to '編集', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 text-indigo-400 bg-white border inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to 'この投稿を削除', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 text-red-400 bg-white font-medium" %>
+      <%= button_to 'この投稿を削除', @post, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" } }, class: "mt-2 rounded-lg py-3 px-5 text-red-400 bg-white font-medium" %>
     </div>
   </div>
 </div>

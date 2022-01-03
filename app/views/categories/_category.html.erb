@@ -6,7 +6,7 @@
   <% if action_name != "show" %>
     <%= link_to 'Edit', edit_category_path(category), data: { turbo_frame: "modal" }, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy', category_path(category), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to 'Destroy', category, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか?" } }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
     <hr class="mt-6">
   <% end %>
