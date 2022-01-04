@@ -1,4 +1,4 @@
-<%= form_with(model: post, id: "post_form", class: "contents", data: { controller: "hello", action: "turbo:submit-start->hello#disableSubmit" }) do |form| %>
+<%= form_with(model: post, id: "post_form", class: "contents") do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -27,17 +27,19 @@
   </div>
 
   <div class="inline">
-    <%= button_tag type: "submit", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-flex items-center font-medium cursor-pointer" do %>
-      <svg data-hello-target="loading" class="hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
-      <%= submit_button_name(post) %>
+    <%= form.button class: "group rounded-lg py-3 px-5 bg-blue-600 text-white inline-flex items-center font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" do %>
+      <span class="hidden group-disabled:inline-flex">
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        <span><%= t("helpers.submit.saving") %></span>
+      </span>
+      <span class="group-disabled:hidden">
+        <%= post.persisted? ? t("helpers.submit.update") : t("helpers.submit.create") %>
+      </span>
     <% end %>
     <% if post.persisted? %>
-      <%= link_to t(".cancel"), post, class: "rounded-lg py-3 px-5 text-gray inline-block font-medium cursor-pointer" %>
+      <%= link_to t("helpers.links.cancel"), post, class: "rounded-lg py-3 px-5 text-gray inline-block font-medium cursor-pointer" %>
     <% else %>
-      <%= link_to t(".cancel"), posts_path, class: "rounded-lg py-3 px-5 text-gray inline-block font-medium cursor-pointer" %>
+      <%= link_to t("helpers.links.cancel"), posts_path, class: "rounded-lg py-3 px-5 text-gray inline-block font-medium cursor-pointer" %>
     <% end %>
   </div>
 <% end %>

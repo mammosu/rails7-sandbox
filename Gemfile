@@ -79,3 +79,4 @@ group :production do
 end
 
 gem "view_component"
+gem "rails-i18n", "~> 7.0"
