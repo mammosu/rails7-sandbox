@@ -1,0 +1,34 @@
+version: '3.7'
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: Dockerfile
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/app:cached
+    - bundle:/usr/local/bundle
+  depends_on:
+    - postgres
+
+services:
+
+  rails:
+    <<: *app
+    ports:
+      - '3000:3000'
+    command: bin/dev
+
+  postgres:
+    image: postgres:13.2-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  bundle:
+  postgres:
