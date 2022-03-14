@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :categories
   resources :posts
   get "about" => "static_pages#about"
