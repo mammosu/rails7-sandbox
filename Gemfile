@@ -76,3 +76,5 @@ end
 
 gem "view_component"
 gem "rails-i18n", "~> 7.0"
+
+gem "devise", "~> 4.8"
