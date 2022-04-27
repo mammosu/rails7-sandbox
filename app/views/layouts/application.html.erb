@@ -12,16 +12,10 @@
   </head>
 
   <body>
-    <%= render Common::HeaderComponent.new() %>
+    <%= render Common::HeaderComponent.new(user_signed_in: user_signed_in?) %>
     <main class="container mx-auto mt-28">
       <% flash.each do |type, data| %>
         <%= render Alerts::AlertComponent.new(type: type, data: data) %>
-      <% end %>
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
       <% end %>
       <%= yield %>
     </main>
