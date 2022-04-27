@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_scope :user do
+    get "users", to: "devise/sessions#new"
+  end
   resources :categories
   resources :posts
   get "about" => "static_pages#about"
